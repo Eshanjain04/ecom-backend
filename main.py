@@ -5,6 +5,7 @@ from wsgiref.simple_server import make_server
 import falcon
 
 from db_connection import MongoConnect
+from User.views.login import Login
 from User.views.register_user import RegisterUser
 
 # connect db
@@ -20,3 +21,4 @@ if __name__ == '__main__':
 
 # Add your resource to the API
 app.add_route('/user/register/', RegisterUser())
+app.add_route('/user/login/', Login())

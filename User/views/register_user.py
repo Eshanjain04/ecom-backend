@@ -2,7 +2,7 @@
 import falcon
 
 from User.Model.user import User
-from utilities.password_hashing import Passwordencryption
+from utilities.password_hashing import Encrypt
 
 
 class RegisterUser:
@@ -27,7 +27,7 @@ class RegisterUser:
             response.media = {'msg': 'User Already Exists'}
             return response
         else:
-            hash_pass = Passwordencryption(user_input['password']).hashed_password()
+            hash_pass = Encrypt().encrypt(user_input.get('password'))
             new_user_obj = User(user_name=user_input['user_name'],
                                 email=user_input['email'],
                                 password=hash_pass)
