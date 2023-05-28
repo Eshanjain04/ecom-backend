@@ -5,17 +5,11 @@ from wsgiref.simple_server import make_server
 import falcon
 
 from db_connection import MongoConnect
+from User.views.register_user import RegisterUser
 
 # connect db
 
 MongoConnect.connect_to_db()
-
-
-# Define your Falcon resource
-class MyResource:
-    def on_get(self, req, resp):
-        # Handle GET request
-        resp.media = {'message': 'Hello, Falcon with Mongoengine!'}
 
 
 # Create a Falcon API instance
@@ -25,4 +19,4 @@ if __name__ == '__main__':
         print('Serving on port' + os.environ['RUNNING_PORT'])
 
 # Add your resource to the API
-app.add_route('/', MyResource())
+app.add_route('/user/register/', RegisterUser())
