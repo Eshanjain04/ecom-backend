@@ -1,0 +1,65 @@
+repos:
+    -   repo: https://github.com/dannysepler/rm_unneeded_f_str
+        rev: v0.1.0
+        hooks:
+            -   id: rm-unneeded-f-str
+    -   repo: https://github.com/pre-commit/mirrors-yapf
+        rev: v0.32.0
+        hooks:
+            -   id: yapf
+                name: yapf
+                language: python
+                entry: yapf
+                args: [ column_limit=120, based_on_style=yapf ]
+                types: [ python ]
+    -   repo: https://github.com/pre-commit/pre-commit-hooks
+        rev: v2.3.0
+        hooks:
+            -   id: trailing-whitespace
+            -   id: fix-encoding-pragma
+            -   id: end-of-file-fixer
+            -   id: check-yaml
+            -   id: check-added-large-files
+            -   id: check-ast
+            -   id: check-json
+            -   id: check-merge-conflict
+            -   id: debug-statements
+            -   id: detect-private-key
+            -   id: double-quote-string-fixer
+            -   id: flake8
+                args: [ --max-line-length=120 ]
+#    -   repo: https://github.com/pre-commit/mirrors-autopep8
+#        rev: v1.4.4
+#        hooks:
+#            -   id: autopep8
+#                args: [ --max-line-length=120 ]
+    -   repo: https://github.com/psf/black
+        rev: 22.3.0
+        hooks:
+            -   id: black
+                language_version: python3
+                args: [ --line-length=150 ]
+                files: '(^bilby/bilby_mcmc/|^examples/)'
+    -   repo: https://github.com/pre-commit/mirrors-isort
+        rev: v5.10.1
+        hooks:
+            -   id: isort # sort imports alphabetically and separates import into sections
+                args: [ -w=88, -m=3, -tc, -sp=setup.cfg ]
+                files: '(^bilby/bilby_mcmc/|^examples/)'
+    -   repo: https://github.com/asottile/reorder_python_imports
+        rev: v3.1.0
+        hooks:
+            -   id: reorder-python-imports
+    -   repo: https://github.com/pre-commit/pygrep-hooks
+        rev: v1.9.0
+        hooks:
+            -   id: python-check-blanket-noqa
+            -   id: python-check-blanket-type-ignore
+            -   id: python-check-mock-methods
+            -   id: python-no-eval
+            -   id: python-no-log-warn
+            -   id: python-use-type-annotations
+            -   id: rst-backticks
+            -   id: rst-directive-colons
+            -   id: rst-inline-touching-normal
+            -   id: text-unicode-replacement-char
